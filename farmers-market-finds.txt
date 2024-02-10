@@ -1,0 +1,19 @@
+General public
+  Our Vendors
+  Search for Goods
+
+ Vendors View 
+  Our Vendors
+  Search for Goods
+  My Vendor Booth
+  Vendor Log In - Sign Out
+
+Admin/SuperAdmin View
+  Our Vendors
+  Search for Goods
+  Review Vendor Submissions
+  Admin Dashboard
+  Vendor Log In - Sign Out
+
+
+favicon image color #3ed800
