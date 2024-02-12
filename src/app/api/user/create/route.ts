@@ -8,8 +8,10 @@ export async function POST(request: Request) {
   try {
     await prisma.user.create({
       data: {
-        name: request?.body?.data.username,
-        email: request?.body?.data.email_addresses[0].email_address,
+        //@ts-ignore
+        name: request.body.data.username,
+        //@ts-ignore
+        email: request.body.data.email_addresses[0].email_address,
       }
     })
     return new Response('Success!', {
