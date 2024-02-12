@@ -1,3 +1,4 @@
+import Check from "@/actions/check";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import H1 from "@/components/ui/h1";
@@ -25,6 +26,9 @@ export default function Home() {
       <div className="flex gap-6 items-center justify-center">
         <Button>Learn More</Button>
         <Button>Vendor Sign Up</Button>
+        <Button onClick={() => {
+          Check()
+        }}>check</Button>
       </div>
     </main>
   );
