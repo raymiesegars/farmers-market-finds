@@ -14,8 +14,21 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(uuid())
-  name  String
-  email String
-  deleted Boolean @default(false)
+  id             String         @id @default(uuid())
+  name           String
+  email          String
+  deleted        Boolean        @default(false)
+  vendor_profile VendorProfile?
+}
+
+model VendorProfile {
+  id                 Int    @id @default(autoincrement())
+  vendor_name        String
+  vendor_description String
+  vendor_image_path  String
+
+  // in the vendor profile each vendor is going be related to one user, and we are going to get the ID from that user which we pass through the references part of the declaration, so we take the reference of that ID and we store it in the local field for this model which is user_id. 
+  user    User   @relation(fields: [user_id], references: [id])
+  // this is the field where it will be stored below
+  user_id String @unique
 }
