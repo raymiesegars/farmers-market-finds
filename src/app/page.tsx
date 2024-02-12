@@ -26,9 +26,6 @@ export default function Home() {
       <div className="flex gap-6 items-center justify-center">
         <Button>Learn More</Button>
         <Button>Vendor Sign Up</Button>
-        <Button onClick={() => {
-          Check()
-        }}>check</Button>
       </div>
     </main>
   );
