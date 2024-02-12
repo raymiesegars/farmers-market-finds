@@ -104,7 +104,7 @@ interface UserInterface extends Omit<User , UnwantedKeys>{
   
   const webhookSecret: string = process.env.WEBHOOK_SECRET || "";
   
-  export default async function handler(
+  export async function Post(
     req: NextApiRequestWithSvixRequiredHeaders,
     res: NextApiResponse
   ) {
@@ -156,5 +156,3 @@ interface UserInterface extends Omit<User , UnwantedKeys>{
   };
   
   type EventType = "user.created" | "user.updated" | "*";
-
-
