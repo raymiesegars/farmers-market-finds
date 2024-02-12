@@ -1,9 +1,9 @@
 'use server';
 
-import H1 from '@/components/ui/h1';
 import prisma from '@/lib/prisma';
 import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
+import Form from '@/components/Form';
 
 export default async function VendorForm() {
   const { userId }: { userId: string | null } = auth();
@@ -23,8 +23,7 @@ export default async function VendorForm() {
     redirect("/dashboard")
   } else {
     return (
-      <H1>This is the form</H1>
-      // <VendorForm />
+      <Form />
     )
   }
 }
