@@ -3,6 +3,7 @@
 import prisma from '@/lib/prisma';
 import { auth } from '@clerk/nextjs';
 import { error } from 'console';
+import { redirect } from 'next/navigation';
 
 interface vendorFormSubmissionProps {
   data: {
@@ -22,4 +23,5 @@ export default async function vendorFormSubmission(formData: FormData) {
       vendor_image_path: '',
     },
   });
+  redirect('/');
 }

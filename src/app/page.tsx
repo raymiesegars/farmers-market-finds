@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import H1 from "@/components/ui/h1";
 import Image from "next/image";
+import PrintVendors from "@/actions/printVendors";
 
 export default function Home() {
   return (

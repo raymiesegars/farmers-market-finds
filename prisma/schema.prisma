@@ -28,7 +28,44 @@ model VendorProfile {
   vendor_image_path  String?
 
   // in the vendor profile each vendor is going be related to one user, and we are going to get the ID from that user which we pass through the references part of the declaration, so we take the reference of that ID and we store it in the local field for this model which is user_id. 
-  user    User   @relation(fields: [user_id], references: [id])
+  user         User          @relation(fields: [user_id], references: [id])
   // this is the field where it will be stored below
-  user_id String @unique
+  user_id      String        @unique
+  //Defining this weekly_booth value for use in the WeeklyBooth table as one to many using an empty array
+  weekly_booth WeeklyBooth[]
+}
+
+model Good {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String
+  image       String?
+  price       Float
+
+  //Forms the relationship between the 2 tables
+  weekly_booth    WeeklyBooth @relation(fields: [weekly_booth_id], references: [id])
+  weekly_booth_id Int
+}
+
+model WeeklyBooth {
+  id Int @id @default(autoincrement())
+
+  //these lines are making the one to many relationship to the VendorProfile table as one Vendor may have many weekly booths of data
+  vendor    VendorProfile @relation(fields: [vendor_id], references: [id])
+  vendor_id Int
+
+  //linking the market so that we can make a list of booths for each market date
+  market    Market @relation(fields: [market_id], references: [id])
+  market_id Int
+
+  //List of goods at each individual weekly booth
+  booth_goods Good[]
+}
+
+model Market {
+  id          Int           @id @default(autoincrement())
+  description String
+  date        DateTime
+  //list of booths that will be at each market date
+  booth_list  WeeklyBooth[]
 }
