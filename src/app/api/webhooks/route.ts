@@ -56,6 +56,14 @@ export async function POST(req: Request) {
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
   console.log('Webhook body:', body);
 
+  if (eventType === 'user.deleted') {
+    const { deleted, id } = evt.data;
+    await prisma.user.delete({ where: { id } });
+    return new Response('User deleted', {
+      status: 200,
+    });
+  }
+
   if (eventType === 'user.created' || eventType === 'user.updated') {
     const { email_addresses, primary_email_address_id, first_name, last_name } =
       evt.data;
@@ -83,5 +91,3 @@ export async function POST(req: Request) {
 
   return new Response('', { status: 200 });
 }
-
-
