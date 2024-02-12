@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignInUrl="/vendorform" afterSignUpUrl="/vendorform">
       <html lang="en" suppressHydrationWarning={true}>
         <body>
           <ThemeProvider attribute="class" defaultTheme="system">{children}</ThemeProvider>
