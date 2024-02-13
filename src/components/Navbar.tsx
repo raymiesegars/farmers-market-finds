@@ -16,7 +16,7 @@ export default function Navbar() {
     <header className="shadow-sm p-5">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div className="flex-shrink-0 flex items-center linkHover">
+          <div className="flex-shrink-0 flex items-center link-hover">
             <Link href="/" passHref legacyBehavior>
               <a className="flex items-center space-x-2 text-xl font-extrabold">
                 <Image
@@ -30,8 +30,8 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/vendors/page.tsx" legacyBehavior>
-              <a className="space-x-2 text-lg font-semibold"><span>Vendors</span></a>
+            <Link href="/vendors" legacyBehavior>
+              <a className="space-x-2 text-lg font-bold link-hover"><span>Vendors</span></a>
             </Link>
             <ModeToggle />
             <SignedIn>
@@ -40,7 +40,7 @@ export default function Navbar() {
             <SignedOut>
               <Button asChild>
                 <SignInButton>
-                  Vendor Sign In
+                  <span>Vendor Sign In</span>
                 </SignInButton>
               </Button>
             </SignedOut>
@@ -67,6 +67,9 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="md:hidden" id="mobile-menu">
           <div className="px-2 pt-3 pb-3 space-y-3 sm:px-3 flex flex-col items-center">
+            <Link href="/vendors" legacyBehavior>
+              <a className="space-x-2 text-lg font-bold link-hover"><span>Vendors</span></a>
+            </Link>
             <ModeToggle />
             <SignedIn>
               <UserButton />

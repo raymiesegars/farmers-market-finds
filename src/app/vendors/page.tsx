@@ -9,7 +9,7 @@ export default async function Vendors() {
     <div>
       {vendors.map(vendor => {
         return (
-          <div key={vendor.id}>
+          <div key={vendor.id} className="py-12 flex flex-col items-center text-left gap-8">
             <H1>{vendor.vendor_name}</H1>
             <p>{vendor.vendor_description}</p>
           </div>

@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from '@clerk/nextjs'
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +22,11 @@ export default function RootLayout({
     <ClerkProvider afterSignInUrl="/vendorform" afterSignUpUrl="/vendorform">
       <html lang="en" suppressHydrationWarning={true}>
         <body>
-          <ThemeProvider attribute="class" defaultTheme="system">{children}</ThemeProvider>
+          <ThemeProvider attribute="class" defaultTheme="system">
+            <Navbar />
+            {children}
+            <Footer />
+            </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
  
+@layer components {
+  .link-hover {
+    @apply rounded-md p-2;
+  }
+  .link-hover:hover {
+    @apply text-gray-500 bg-gray-100 outline-none;
+  }
+  .link-hover:focus {
+    @apply ring-inset ring-indigo-500 ring-2
+  }
+}
 
 @layer base {
   :root {
