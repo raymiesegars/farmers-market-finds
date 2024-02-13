@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .linkHover {
+    @apply rounded-md p-2;
+  }
+  .linkHover:hover {
+    @apply text-gray-500 bg-gray-100 outline-none;
+  }
+  .linkHover:focus {
+    @apply ring-inset ring-indigo-500 ring-2
+  }
+}

@@ -7,7 +7,7 @@ import PrintVendors from "@/actions/printVendors";
 
 export default function Home() {
   return (
-    <main className=" p-24">
+    <main className="pl-16 pr-16 pt-0 pb-0">
       <Navbar />
       <section className="py-12 flex flex-col items-center text-left gap-8">
         <H1>Welcome to Farmers Market Finds</H1>
