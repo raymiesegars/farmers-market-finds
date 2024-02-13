@@ -11,6 +11,7 @@ export default async function Vendors() {
         return (
           <div key={vendor.id} className="py-12 flex flex-col items-center text-left gap-8">
             <H1>{vendor.vendor_name}</H1>
+            {/* <p>{vendor.vendor_email</p> */}
             <p>{vendor.vendor_description}</p>
           </div>
         )
