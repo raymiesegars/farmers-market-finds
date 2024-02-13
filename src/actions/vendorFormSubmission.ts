@@ -17,7 +17,11 @@ export default async function vendorFormSubmission(formData: FormData) {
   console.log({userId})
   await prisma.vendorProfile.create({
     data: {
-      user_id: userId as string,
+      user: {
+        connect: {
+          id: userId as string
+        }
+      },
       vendor_name: formData.get('vendor_name') as string,
       vendor_description: formData.get('vendor_description') as string,
       vendor_image_path: '',
