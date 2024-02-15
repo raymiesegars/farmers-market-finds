@@ -9,6 +9,7 @@ export type Markets = {
   id: number
   description: string
   date: Date
+  hasBooth: any
 }
 
 export const marketColumns: ColumnDef<Markets>[] = [
@@ -23,9 +24,13 @@ export const marketColumns: ColumnDef<Markets>[] = [
   {
     id: 'Create/Edit Button',
     cell: ({ row }) => {
-      console.log({row})
 
-      return <Button>Create Booth</Button>
+      if (!row.original.hasBooth) {
+        return <Button>Create Booth</Button>
+      } else {
+        return <Button>Edit Booth</Button>
+      }
+      
     }
   },
 ]
