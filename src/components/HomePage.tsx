@@ -1,4 +1,3 @@
-import MarketFilterSidebar from "./MarketFilterSidebar";
 import { InputWithButton } from "./ui/InputWithButton";
 import H1 from "./ui/h1";
 
