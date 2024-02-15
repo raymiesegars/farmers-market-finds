@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { ColumnDef } from "@tanstack/react-table"
+import { formatDate } from "@/lib/utils";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -14,23 +15,28 @@ export type Markets = {
 
 export const marketColumns: ColumnDef<Markets>[] = [
   {
+    accessorKey: "date",
+    header: "Date",
+    cell: ({ row }) => {
+      const formattedDate = formatDate(new Date(row.original.date))
+      return formattedDate
+    }
+  },
+  {
     accessorKey: "description",
     header: "Description",
   },
   {
-    accessorKey: "date",
-    header: "Date",
-  },
-  {
     id: 'Create/Edit Button',
     cell: ({ row }) => {
+      const buttonWidth = "120px";
 
       if (!row.original.hasBooth) {
-        return <Button>Create Booth</Button>
+        return <Button style={{ width: buttonWidth }}>Create Booth</Button>
       } else {
-        return <Button>Edit Booth</Button>
+        return <Button style={{ width: buttonWidth }}>Edit Booth</Button>
       }
-      
+
     }
   },
 ]
