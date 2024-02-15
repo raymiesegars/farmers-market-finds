@@ -14,7 +14,6 @@ interface vendorFormSubmissionProps {
 
 export default async function vendorFormSubmission(formData: FormData) {
   const { userId } = auth();
-  console.log({userId})
   await prisma.vendorProfile.create({
     data: {
       user: {
@@ -27,5 +26,5 @@ export default async function vendorFormSubmission(formData: FormData) {
       vendor_image_path: '',
     },
   });
-  redirect('/');
+  redirect('/vendorform-submitted');
 }

@@ -18,9 +18,14 @@ export default async function VendorForm() {
     where: { id: userId },
     include: { vendor_profile: true }
   })
-
+  if (!user) {
+    return(
+      <h1>Error</h1>
+    )
+  }
+  
   if (user?.vendor_profile) {
-    redirect("/dashboard")
+    redirect("/vendor-dashboard")
   } else {
     return (
       <Form />
