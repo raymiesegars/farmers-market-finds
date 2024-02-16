@@ -21,6 +21,9 @@ export async function GET() {
         gt: new Date(),
       },
     },
+    orderBy: {
+      date: 'asc'
+    },
   });
 
   if (!markets) {

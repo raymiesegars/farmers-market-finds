@@ -12,6 +12,9 @@
   .link-hover:focus {
     @apply ring-inset ring-indigo-500 ring-2
   }
+  .global-input {
+    background-color:  hsl(var(--input))!important;
+  }
 }
 
 @layer base {

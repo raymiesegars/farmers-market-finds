@@ -12,7 +12,7 @@ const VendorForm = () => {
         <form action={vendorFormSubmission}>
           <div className="mb-4 pb-2">
             <label htmlFor="name" className="block text-sm font-medium">Name</label>
-            <input type="text" id="name" name="vendor_name" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" />
+            <input type="text" id="name" name="vendor_name" className="mt-1 global-input block w-full rounded-md focus:ring focus:ring-opacity-50 p-2" />
           </div>
 
           {/* <div className="mb-4 pb-2">
@@ -21,8 +21,8 @@ const VendorForm = () => {
           </div> */}
 
           <div className="mb-4 pb-2">
-            <label htmlFor="description" className="block text-sm font-medium">About Us</label>
-            <Textarea id="description" name="vendor_description" className="mt-1 block w-full rounded-md focus:ring focus:ring-opacity-50 h-32" />
+            <label htmlFor="description" className="block text-sm font-medium">Tell Us About Your Vendor</label>
+            <Textarea id="description" name="vendor_description" className="mt-1 global-input block w-full rounded-md focus:ring focus:ring-opacity-50 h-32" />
           </div>
 
           <div>
