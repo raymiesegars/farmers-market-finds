@@ -33,9 +33,19 @@ export const marketColumns: ColumnDef<Markets>[] = [
       const buttonWidth = "140px";
 
       if (!row.original.hasBooth) {
-        return <Button style={{ minWidth: buttonWidth }}><Plus className="mr-2 h-4 w-4"></Plus>Create Booth</Button>
-      } else {  
-        return <Button style={{ minWidth: buttonWidth }}><Edit className="mr-2 h-4 w-4"></Edit>Edit Booth</Button>
+        return (
+          <Button style={{ minWidth: buttonWidth }} className="flex items-center">
+            <Plus className="flex-1 mr-2 h-4 w-4"></Plus>
+            Create Booth
+          </Button>
+        )
+      } else {
+        return (
+          <Button style={{ minWidth: buttonWidth }} className="flex items-center">
+            <Edit className="flex-1 mr-2 h-4 w-4"></Edit>
+            Edit Booth&nbsp;&nbsp;&nbsp;
+          </Button>
+        )
       }
 
     }
