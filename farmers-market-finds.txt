@@ -17,3 +17,7 @@ Admin/SuperAdmin View
 
 
 favicon image color #3ed800
+
+Bugs
+
+Light mode icon not showing on refresh sometimes if already in light mode.

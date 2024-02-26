@@ -9,7 +9,7 @@ import { ModeToggle } from './ui/toggle-mode'
 import { Button } from './ui/button'
 import { MenuSquareIcon, XCircleIcon } from 'lucide-react';
 
-export default function Navbar() {
+export default function AdminNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <header className="shadow-sm p-5">
@@ -24,6 +24,7 @@ export default function Navbar() {
                   height={40}
                   alt="Farmers Market Finds Logo"
                 />
+                <span>Farmers Market Finds</span>
                 <span>Farmers Market Finds</span>
               </a>
             </Link>

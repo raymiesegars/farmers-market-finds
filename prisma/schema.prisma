@@ -19,6 +19,8 @@ model User {
   email          String
   deleted        Boolean        @default(false)
   vendor_profile VendorProfile?
+  is_admin       Boolean        @default(false)
+  is_super_admin Boolean        @default(false)
 }
 
 model VendorProfile {
@@ -36,15 +38,15 @@ model VendorProfile {
 }
 
 model GlobalGoods {
-  id   Int    @id @default(autoincrement())
-  name String
+  id    Int     @id @default(autoincrement())
+  name  String
   image String?
 
   goods Good[]
 }
 
 model Good {
-  id Int @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   description String
   image       String?
   price       Float
@@ -53,7 +55,7 @@ model Good {
   weekly_booths    WeeklyBooth @relation(fields: [weekly_booths_id], references: [id])
   weekly_booths_id Int
 
-  global_good GlobalGoods @relation(fields: [global_good_id], references: [id])
+  global_good    GlobalGoods @relation(fields: [global_good_id], references: [id])
   global_good_id Int
 }
 
