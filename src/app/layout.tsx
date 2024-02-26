@@ -22,14 +22,13 @@ export default async function RootLayout({
 }>) {
   const user = auth();
   const userInfo = await getUser(user.userId);
-  console.log({userInfo})
   return (
     <ClerkProvider afterSignInUrl="/vendorform" afterSignUpUrl="/vendorform">
       <html lang="en" suppressHydrationWarning={true}>
         <body>
           <ThemeProvider attribute="class" defaultTheme="system">
             {
-              userInfo?.is_admin ? <AdminNavbar /> : <Navbar />
+              userInfo ? (userInfo.is_admin ? <AdminNavbar /> : <Navbar />) : <Navbar />
             }
             {children}
             <Footer />
