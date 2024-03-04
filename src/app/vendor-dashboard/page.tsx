@@ -5,6 +5,8 @@ import { GlobalGoods, globalGoodsColumns } from "./global-goods-columns"
 import { Markets, marketColumns } from "./markets-columns"
 import { MarketsDataTable } from "./markets-data-table";
 import { GlobalGoodsDataTable } from "./global-goods-data-table";
+import { useRouter } from 'next/navigation';
+
 
 //Edit description, 
 //upload image,
@@ -14,8 +16,18 @@ import { GlobalGoodsDataTable } from "./global-goods-data-table";
 export default function Dashboard() {
   const [goods, setGoods] = useState([])
   const [markets, setMarkets] = useState([])
+  const router = useRouter();
 
   useEffect(() => {
+    axios.get('/api/isCurrentUserVendor')
+      .then((res) => {
+        if (!res.data) {
+          // If there's no vendor_profile, redirect to vendor form
+          router.push('/vendorform');
+        }
+      })
+      .catch((error) => console.error(error));
+
     axios('/api/globalGoods').then((res: any) => {
       setGoods(res.data)
     })
@@ -23,14 +35,13 @@ export default function Dashboard() {
     axios('/api/markets').then((res: any) => {
       setMarkets(res.data)
     })
-  }, [])
+  }, [router])
 
   return (
     <div>
       <div className='p-8 md:w-4/5 lg:w-3/5 mx-auto flex items-center justify-center'>
         <MarketsDataTable columns={marketColumns} data={markets} />
       </div>
-      <GlobalGoodsDataTable columns={globalGoodsColumns} data={goods} />
     </div>
   )
 }

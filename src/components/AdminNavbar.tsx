@@ -4,7 +4,7 @@ import { SignedOut, UserButton, SignedIn, SignInButton } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import logo from "@/assets/logo.png";
+import logo from "/public/assets/logo.png";
 import { ModeToggle } from './ui/toggle-mode'
 import { Button } from './ui/button'
 import { MenuSquareIcon, XCircleIcon } from 'lucide-react';
@@ -25,16 +25,27 @@ export default function AdminNavbar() {
                   alt="Farmers Market Finds Logo"
                 />
                 <span>Farmers Market Finds</span>
-                <span>Farmers Market Finds</span>
               </a>
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-4">
+
+            <Link href="/admin-dashboard" legacyBehavior>
+              <a className="space-x-2 text-lg font-bold link-hover"><span>Admin Dashboard</span></a>
+            </Link>
+
+            <Link href="/vendor-dashboard" legacyBehavior>
+              <a className="space-x-2 text-lg font-bold link-hover"><span>Vendor Dashboard</span></a>
+            </Link>
+
             <Link href="/vendors" legacyBehavior>
               <a className="space-x-2 text-lg font-bold link-hover"><span>Vendors</span></a>
             </Link>
 
-            <ModeToggle />
+            <Link href="/about" legacyBehavior>
+              <a className="space-x-2 text-lg font-bold link-hover"><span>About Us</span></a>
+            </Link>
+
             <SignedIn>
               <UserButton />
             </SignedIn>
@@ -45,6 +56,7 @@ export default function AdminNavbar() {
                 </SignInButton>
               </Button>
             </SignedOut>
+            <ModeToggle />
           </div>
           <div className="-mr-2 flex md:hidden">
             <button
@@ -68,10 +80,20 @@ export default function AdminNavbar() {
       {isMenuOpen && (
         <div className="md:hidden" id="mobile-menu">
           <div className="px-2 pt-3 pb-3 space-y-3 sm:px-3 flex flex-col items-center">
+            <Link href="/admin-dashboard" legacyBehavior>
+              <a className="space-x-2 text-lg font-bold link-hover"><span>Admin Dashboard</span></a>
+            </Link>
+
+            <Link href="/vendor-dashboard" legacyBehavior>
+              <a className="space-x-2 text-lg font-bold link-hover"><span>Vendor Dashboard</span></a>
+            </Link>
+
             <Link href="/vendors" legacyBehavior>
               <a className="space-x-2 text-lg font-bold link-hover"><span>Vendors</span></a>
             </Link>
+
             <ModeToggle />
+
             <SignedIn>
               <UserButton />
             </SignedIn>

@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button"
 import { ColumnDef } from "@tanstack/react-table"
 import { formatDate } from "@/lib/utils";
 import { Edit, Plus } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import VendorBoothForm from "@/components/VendorBoothForm";
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 export type Markets = {
   id: number
   description: string
@@ -34,10 +34,17 @@ export const marketColumns: ColumnDef<Markets>[] = [
 
       if (!row.original.hasBooth) {
         return (
-          <Button style={{ minWidth: buttonWidth }} className="flex items-center">
-            <Plus className="flex-1 mr-2 h-4 w-4"></Plus>
-            Create Booth
-          </Button>
+          <Dialog>
+            <DialogTrigger>
+              <Button style={{ minWidth: buttonWidth }} className="flex items-center">
+                <Plus className="flex-1 mr-2 h-4 w-4"></Plus>
+                Create Booth
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <VendorBoothForm date={row.original.date} />
+            </DialogContent>
+          </Dialog>
         )
       } else {
         return (

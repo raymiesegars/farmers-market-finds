@@ -9,7 +9,7 @@ import { ModeToggle } from './ui/toggle-mode'
 import { Button } from './ui/button'
 import { MenuSquareIcon, XCircleIcon } from 'lucide-react';
 
-export default function Navbar() {
+export default function AdminNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <header className="shadow-sm p-5">
@@ -28,9 +28,18 @@ export default function Navbar() {
               </a>
             </Link>
           </div>
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4">        
+
+            <Link href="/vendor-dashboard" legacyBehavior>
+              <a className="space-x-2 text-lg font-bold link-hover"><span>Vendor Dashboard</span></a>
+            </Link>
+
             <Link href="/vendors" legacyBehavior>
               <a className="space-x-2 text-lg font-bold link-hover"><span>Vendors</span></a>
+            </Link>
+
+            <Link href="/about" legacyBehavior>
+              <a className="space-x-2 text-lg font-bold link-hover"><span>About Us</span></a>
             </Link>
 
             <SignedIn>
@@ -67,10 +76,17 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="md:hidden" id="mobile-menu">
           <div className="px-2 pt-3 pb-3 space-y-3 sm:px-3 flex flex-col items-center">
+
+            <Link href="/vendor-dashboard" legacyBehavior>
+              <a className="space-x-2 text-lg font-bold link-hover"><span>Vendor Dashboard</span></a>
+            </Link>
+
             <Link href="/vendors" legacyBehavior>
               <a className="space-x-2 text-lg font-bold link-hover"><span>Vendors</span></a>
             </Link>
+
             <ModeToggle />
+
             <SignedIn>
               <UserButton />
             </SignedIn>
