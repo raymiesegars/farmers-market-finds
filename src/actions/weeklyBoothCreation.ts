@@ -8,9 +8,14 @@ export default async function weeklyBoothCreation(formData: FormData) {
   const session = await auth();
   const userId = session.userId;
 
-  const marketId = parseInt(formData.get("marketId"));
-
+  const marketIdValue = formData.get("marketId");
   if (!userId) {
+    return false;
+  }
+
+  const marketId = parseInt(marketIdValue as string, 10);
+
+  if (isNaN(marketId)) {
     return false;
   }
 
@@ -32,4 +37,6 @@ export default async function weeklyBoothCreation(formData: FormData) {
       vendor_id: vendorProfile.id,
     },
   });
+
+  return true;
 }
