@@ -8,10 +8,10 @@ interface VendorCardProp {
 }
 
 export default function VendorCard({
-  vendor: { vendor_name, vendor_description, vendor_image_path, detailPageUrl },
+  vendor: { vendor_name, vendor_description, vendor_image_path },
 }: VendorCardProp) {
   return (
-    <Link href={detailPageUrl || '#'} passHref legacyBehavior>
+    <Link href="/" passHref legacyBehavior>
       <a className="block overflow-hidden rounded-lg border shadow-lg transition-shadow hover:border-gray-300 hover:shadow-xl">
         <div className="p-4 text-center">
           <h2 className="text-2xl font-semibold">{vendor_name}</h2>
