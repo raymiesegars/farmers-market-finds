@@ -1,28 +1,71 @@
-import React from "react";
-import vendorsAction from "@/actions/printVendors"
-import H1 from "@/components/ui/h1";
+"use client";
 
-export default async function Vendors() {
-  const vendors = await vendorsAction();
+import React, { useEffect, useState } from "react";
+import H1 from "@/components/ui/h1";
+import VendorCard from "@/components/VendorCard";
+
+interface VendorProfile {
+  id: number;
+  vendor_name: string;
+  vendor_description: string;
+  vendor_image_path: string | null;
+  user_id: string;
+  approved: boolean;
+}
+
+const Vendors = () => {
+  const [vendors, setVendors] = useState<VendorProfile[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    fetch("/api/vendorProfiles", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setVendors(data);
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredVendors = vendors.filter(
+    (vendor) =>
+      vendor.vendor_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      vendor.vendor_description
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()),
+  );
 
   return (
-    <div>
-      {vendors.map(vendor => {
-        return (
-          <div key={vendor.id} className="min-h-screen p-8">
-            <div className="max-w-4xl mx-auto">
-              <div className="space-y-8">
-                <div>
-                  <H1 className="pb-2">{vendor.vendor_name}</H1>
-                  {/* <p>{vendor.vendor_email</p> */}
-                  <p className="mt-2 text-lg">{vendor.vendor_description}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )
-      })
-      }
-    </div >
-  )
-}
+    <div className="flex justify-center">
+      <div className="max-w-full p-4">
+        <H1 className="mb-6 text-center text-3xl font-bold">Our Vendors</H1>
+        <div className="mb-4">
+          <input
+            type="text"
+            className="global-input block w-full rounded-md p-2 focus:ring focus:ring-opacity-50"
+            placeholder="Search vendors..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+          {filteredVendors.length > 0 ? (
+            filteredVendors.map((vendor) => (
+              <VendorCard key={vendor.id} vendor={vendor} />
+            ))
+          ) : (
+            <p className="col-span-full text-center">No vendors found</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Vendors;

@@ -4,7 +4,7 @@ import { SignedOut, UserButton, SignedIn, SignInButton } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import logo from "/public/assets/logo.png";
+import logo from "/public/logo.png";
 import { ModeToggle } from './ui/toggle-mode'
 import { Button } from './ui/button'
 import { MenuSquareIcon, XCircleIcon } from 'lucide-react';
