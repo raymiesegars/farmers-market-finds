@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { goodTypes } from "./goodTypes";
 
 const requiredString = z.string().min(1, "Required");
 
