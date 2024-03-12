@@ -1,17 +1,23 @@
 import { VendorProfile } from "@prisma/client";
 import Image from "next/image";
 import vendorCardPlaceholder from "/public/assets/vendor-card-placeholder.jpg";
-import Link from "next/link"; // Assuming you might want to link to a vendor detail page.
+import vendorApprove from "@/actions/vendorApprove";
+import { Button } from "./ui/button";
 
-interface VendorCardProp {
+interface PendingVendorCardProp {
   vendor: VendorProfile;
 }
 
-export default function VendorCard({
-  vendor: { vendor_name, vendor_description, vendor_image_path },
-}: VendorCardProp) {
+export default function PendingVendorCard({
+  vendor: { id: vendorId, vendor_name, vendor_description, vendor_image_path },
+}: PendingVendorCardProp) {
+  const handleApprove = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    await vendorApprove(vendorId);
+  };
+
   return (
-    <Link href="/" passHref legacyBehavior>
+    <div>
       <a className="block overflow-hidden rounded-lg border shadow-lg transition-shadow hover:border-gray-300 hover:shadow-xl">
         <div className="p-4 text-center">
           <h2 className="text-2xl font-semibold">{vendor_name}</h2>
@@ -27,12 +33,17 @@ export default function VendorCard({
         </div>
         <div className="px-4 py-2">
           <p>{vendor_description}</p>
+          <Button
+            onClick={handleApprove}
+            type="submit"
+            className="mt-2 rounded bg px-4 py-2 flex items-center"
+          >
+            Approve
+          </Button>
         </div>
-        
-        <div className="mb-2 ml-2 flex flex-wrap gap-2">
-          
-        </div>
+
+        <div className="mb-2 ml-2 flex flex-wrap gap-2"></div>
       </a>
-    </Link>
+    </div>
   );
 }
