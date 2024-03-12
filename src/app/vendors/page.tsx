@@ -18,15 +18,12 @@ const Vendors = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetch("/api/vendorProfiles", {
-      method: "GET",
-    })
+    fetch("/api/vendorProfiles")
       .then((response) => response.json())
-      .then((data) => {
+      .then((data: VendorProfile[]) => {
         setVendors(data);
-        console.log(data);
       })
-      .catch((error) => console.log(error));
+      .catch((error: Error) => console.error(error.message));
   }, []);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {

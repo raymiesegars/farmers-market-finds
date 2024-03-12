@@ -1,11 +1,13 @@
-import prisma from "@/lib/prisma";
+import { NextApiRequest, NextApiResponse } from 'next';
+import prisma from '@/lib/prisma';
 
-export async function GET() {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const vendorProfiles = await prisma.vendorProfile.findMany({
     where: {
       approved: true,
     },
   });
 
-  return Response.json(vendorProfiles);
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  return res.status(200).json(vendorProfiles);
 }
