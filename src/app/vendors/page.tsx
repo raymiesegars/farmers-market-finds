@@ -1,10 +1,10 @@
 "use server";
 
-import getVendorsList from "@/actions/getVendorsList";
+import getApprovedVendorsList from "@/actions/getApprovedVendorsList";
 import VendorsList from "@/components/VendorsList";
 
 const Vendors = async () => {
-  const vendors = await getVendorsList();
+  const vendors = await getApprovedVendorsList();
   return <VendorsList vendorsProp={vendors} />;
 };
 

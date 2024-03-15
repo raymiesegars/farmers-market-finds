@@ -2,7 +2,7 @@
 
 import prisma from "@/lib/prisma";
 
-export default async function getVendorsList() {
+export default async function getApprovedVendorsList() {
   return await prisma.vendorProfile.findMany({
     where: { approved: true },
   });
