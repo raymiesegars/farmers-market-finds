@@ -2,11 +2,12 @@
 
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs";
+import { revalidatePath } from "next/cache";
 import { redirect } from 'next/navigation';
 
 export default async function vendorApprove(vendorId: number) {
   const { userId } = auth();
-  const updatedVendor = await prisma.vendorProfile.update({
+  await prisma.vendorProfile.update({
     where: {
       id: vendorId,
     },
@@ -14,5 +15,6 @@ export default async function vendorApprove(vendorId: number) {
       approved: true,
     },
   });
+  revalidatePath('/');
   redirect('/vendors');
 }
