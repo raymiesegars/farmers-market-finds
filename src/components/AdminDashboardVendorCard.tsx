@@ -2,15 +2,14 @@ import { VendorProfile } from "@prisma/client";
 import Image from "next/image";
 import vendorCardPlaceholder from "/public/assets/vendor-card-placeholder.jpg";
 import vendorApprove from "@/actions/vendorApprove";
-import { Button } from "./ui/button";
-import { ConfirmApproval } from "./ConfirmApproval";
 import { DeleteVendor } from "./DeleteVendor";
+import { BanVendor } from "./BanVendor";
 
 interface PendingVendorCardProp {
   vendor: VendorProfile;
 }
 
-export default function PendingVendorCard({ vendor }: any) {
+export default function AdminDashboardVendorCard({ vendor }: any) {
   const handleApprove = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     await vendorApprove(vendor.vendorId);
@@ -40,8 +39,7 @@ export default function PendingVendorCard({ vendor }: any) {
           </p>
           <div className="mt-auto flex w-full justify-center gap-4 p-8 py-2">
             <div className="flex w-full justify-evenly">
-              <ConfirmApproval vendor={vendor} />
-              <DeleteVendor vendor={vendor} />
+              <BanVendor vendor={vendor} />
             </div>
           </div>
         </div>

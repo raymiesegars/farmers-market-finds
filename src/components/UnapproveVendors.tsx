@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import VendorCard from "./VendorCard";
 import H1 from "./ui/h1";
+import AdminDashboardVendorCard from "./AdminDashboardVendorCard";
 
 interface VendorProfile {
   id: number;
@@ -13,7 +13,7 @@ interface VendorProfile {
   approved: boolean;
 }
 
-export default function VendorsList({
+export default function AdminDashboardVendorsList({
   vendorsProp,
 }: {
   vendorsProp: VendorProfile[];
@@ -36,7 +36,9 @@ export default function VendorsList({
   return (
     <div className="flex justify-center">
       <div className="max-w-full p-8 md:p-24">
-        <H1 className="mb-6 text-center text-3xl font-bold">Our Vendors</H1>
+        <H1 className="mb-6 text-center text-3xl font-bold">
+          Manage Approved Vendors
+        </H1>
         <div className="mb-4">
           <input
             type="text"
@@ -49,7 +51,7 @@ export default function VendorsList({
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredVendors.length > 0 ? (
             filteredVendors.map((vendor) => (
-              <VendorCard key={vendor.id} vendor={vendor} />
+              <AdminDashboardVendorCard key={vendor.id} vendor={vendor} />
             ))
           ) : (
             <p className="col-span-full text-center">No vendors found</p>

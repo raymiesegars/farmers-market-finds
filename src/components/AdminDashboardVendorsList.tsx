@@ -13,7 +13,7 @@ interface VendorProfile {
   approved: boolean;
 }
 
-export default function SuperAdminDashboardVendorsList({
+export default function AdminDashboardVendorsList({
   vendorsProp,
 }: {
   vendorsProp: VendorProfile[];
@@ -35,7 +35,7 @@ export default function SuperAdminDashboardVendorsList({
 
   return (
     <div className="flex justify-center">
-      <div className="max-w-full p-4">
+      <div className="max-w-full p-8 md:p-24">
         <H1 className="mb-6 text-center text-3xl font-bold">Pending Vendors</H1>
         <div className="mb-4">
           <input
@@ -46,7 +46,7 @@ export default function SuperAdminDashboardVendorsList({
             onChange={handleSearchChange}
           />
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredVendors.length > 0 ? (
             filteredVendors.map((vendor) => (
               <PendingVendorCard key={vendor.id} vendor={vendor} />

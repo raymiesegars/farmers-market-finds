@@ -53,7 +53,7 @@ model WeeklyBooth {
   market_id   Int
   booth_goods Good[]
   market      Market        @relation(fields: [market_id], references: [id])
-  vendor      VendorProfile @relation(fields: [vendor_id], references: [id])
+  vendor      VendorProfile @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
 }
 
 model Market {
