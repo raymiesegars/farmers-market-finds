@@ -24,7 +24,7 @@ model VendorProfile {
   vendor_description String
   vendor_image_path  String?
   user_id            String        @unique
-  user               User          @relation(fields: [user_id], references: [id])
+  user               User          @relation(fields: [user_id], references: [id], onDelete: Cascade)
   weekly_booths      WeeklyBooth[]
   approved           Boolean       @default(false)
 }

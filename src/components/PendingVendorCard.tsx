@@ -2,7 +2,6 @@ import { VendorProfile } from "@prisma/client";
 import Image from "next/image";
 import vendorCardPlaceholder from "/public/assets/vendor-card-placeholder.jpg";
 import vendorApprove from "@/actions/vendorApprove";
-import { Button } from "./ui/button";
 import { ConfirmApproval } from "./ConfirmApproval";
 import { DeleteVendor } from "./DeleteVendor";
 

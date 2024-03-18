@@ -5,7 +5,7 @@ import UserCard from "./UserCard";
 import H1 from "./ui/h1";
 
 interface UserProfile {
-  id: number;
+  id: string;
   name: string;
   email: string;
   is_admin: boolean;
@@ -49,7 +49,7 @@ export default function UserCardList({
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredUsers.length > 0 ? (
             filteredUsers.map((user) => (
-              <UserCard key={users.id} users={user} />
+              <UserCard key={user.id} user={user} />
             ))
           ) : (
             <p className="col-span-full text-center">No users found</p>
