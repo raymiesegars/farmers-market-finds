@@ -27,7 +27,7 @@ export function DeleteUser({ user: { id: userId } }: UserProp) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="ml-2 w-1/2 bg-[#de5246] hover:bg-[#f39998]">
+        <Button className="ml-2 w-3/4 bg-[#de5246] hover:bg-[#f39998]">
           Ban
         </Button>
       </DialogTrigger>
@@ -49,9 +49,7 @@ export function DeleteUser({ user: { id: userId } }: UserProp) {
                 onClick={handleDeny}
                 type="submit"
                 className="inline-flex items-center justify-center rounded-md bg-[#de5246] px-4 py-2 font-medium shadow-sm hover:bg-[#f39998]"
-              >
-                Ban
-              </Button>
+              ></Button>
             </DialogClose>
             <DialogClose asChild>
               <Button

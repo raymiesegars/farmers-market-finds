@@ -32,7 +32,7 @@ export default function UserCard({ user }: UserCardProp) {
               alt={`${name} image`}
               height={225}
               width={300}
-              className="h-48 rounded-md border-2 border-gray-300 object-cover shadow-md dark:border-gray-700"
+              className="h-48 rounded-full border-2 border-gray-300 object-cover shadow-md dark:border-gray-700"
             />
           </div>
         </div>

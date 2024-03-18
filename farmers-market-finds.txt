@@ -21,3 +21,8 @@ favicon image color #3ed800
 Bugs
 
 Light mode icon not showing on refresh sometimes if already in light mode.
+
+To do list: 
+
+make profile pictures on super admin dashboard circular or look better.
+fix if there's no name put an empty space for users.
