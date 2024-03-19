@@ -4,13 +4,12 @@ import { Textarea } from "./ui/textarea";
 import { formatDate } from "@/lib/utils";
 import GlobalGoodsItem from "./GlobalGoodsItem";
 import { GlobalGoods } from "@prisma/client";
-import weeklyBoothCreation from "@/actions/weeklyBoothCreation";
-import { auth } from "@clerk/nextjs";
-import getUser from "@/actions/getUser";
+import vendorGoodSubmission from "@/actions/vendorGoodSubmission";
 
 interface VendorBoothFormProps {
   date: Date;
   marketId: any;
+  weeklyBoothId: any;
 }
 
 interface Good {
@@ -20,7 +19,11 @@ interface Good {
   image: string | null;
 }
 
-const VendorBoothForm = ({ date, marketId }: VendorBoothFormProps) => {
+const VendorBoothForm = ({
+  date,
+  marketId,
+  weeklyBoothId,
+}: VendorBoothFormProps) => {
   const formattedDate = formatDate(new Date(date));
   const [goods, setGoods] = useState<Good[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -57,43 +60,6 @@ const VendorBoothForm = ({ date, marketId }: VendorBoothFormProps) => {
     setSelectedGood(transformedGood);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!selectedGood || !price || !description) {
-      alert("Please select a good and fill in all fields.");
-      return;
-    }
-
-    const payload = {
-      globalGoodId: selectedGood.id,
-      price: parseFloat(price),
-      description,
-    };
-
-    try {
-      const response = await fetch("/api/setGood/route", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (response.ok) {
-        alert("Good successfully added to the booth!");
-        setSelectedGood(null);
-        setPrice("");
-        setDescription("");
-      } else {
-        const errorData = await response.json();
-        alert(`Error: ${errorData.message}`);
-      }
-    } catch (error) {
-      console.error("Failed to submit good:", error);
-      alert("An error occurred. Please try again.");
-    }
-  };
   return (
     <div className="inset-0 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl rounded-2xl p-8 shadow-md">
@@ -101,28 +67,7 @@ const VendorBoothForm = ({ date, marketId }: VendorBoothFormProps) => {
           <h1 className="mb-4 text-center text-xl font-bold">
             Your Booth for {formattedDate}
           </h1>
-          <form className="space-y-4 p-2" action={weeklyBoothCreation}>
-            <input type="hidden" name="marketId" value={marketId}></input>
-            <label className="block text-center text-lg font-medium">
-              Manage Booth Status
-            </label>
-            <div className="flex justify-center gap-4">
-              {" "}
-              <Button
-                type="submit"
-                className="justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"
-              >
-                Add Booth
-              </Button>
-              <Button
-                type="submit"
-                className="justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"
-              >
-                Remove Booth
-              </Button>
-            </div>
-          </form>
-          <form onSubmit={handleSubmit}>
+          <form action={vendorGoodSubmission}>
             <div className="mb-4 pb-2">
               <label htmlFor="name" className="block text-sm font-medium">
                 Search For Goods You Will Carry
@@ -155,6 +100,18 @@ const VendorBoothForm = ({ date, marketId }: VendorBoothFormProps) => {
             {/* Section to display the selected good */}
             {selectedGood && (
               <div className="mb-4">
+                {/* Invisible input fields to pass our data for the formData */}
+                <input
+                  name="globalGoodId"
+                  type="hidden"
+                  value={selectedGood.id}
+                ></input>
+                <input
+                  name="weeklyBoothId"
+                  type="hidden"
+                  value={weeklyBoothId}
+                ></input>
+
                 <h2 className="text-lg font-semibold">Selected Good:</h2>
                 <div className="flex items-center gap-2">
                   <div className="relative h-20 w-20">
@@ -187,9 +144,9 @@ const VendorBoothForm = ({ date, marketId }: VendorBoothFormProps) => {
                 Price
               </label>
               <input
-                type="text"
+                type="number"
                 id="price"
-                name="vendor_price"
+                name="price"
                 className="global-input mt-1 block w-full rounded-md p-2 focus:ring focus:ring-opacity-50"
                 placeholder="Enter price (e.g., $100)"
                 onChange={(e) => setPrice(e.target.value)}
@@ -205,8 +162,8 @@ const VendorBoothForm = ({ date, marketId }: VendorBoothFormProps) => {
               </label>
               <Textarea
                 id="description"
-                name="vendor_description"
-                className="global-input mt-1 block h-32 w-full rounded-md focus:ring focus:ring-opacity-50"
+                name="description"
+                className="global-input mt-1 block h-32 w-full rounded-md p-2 focus:ring focus:ring-opacity-50"
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
@@ -214,6 +171,9 @@ const VendorBoothForm = ({ date, marketId }: VendorBoothFormProps) => {
             <div>
               <Button
                 type="submit"
+                onClick={() => {
+                  location.reload();
+                }}
                 className="flex w-full justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"
               >
                 Add Good
@@ -222,6 +182,19 @@ const VendorBoothForm = ({ date, marketId }: VendorBoothFormProps) => {
           </form>
         </div>
       </div>
+      {/* <div>
+      {filteredGoods.map((good) => (
+                <GlobalGoodsItem
+                  key={good.id}
+                  good={good}
+                  onSelect={handleSelectGood}
+                />
+              ))}
+
+              {filteredGoods.length === 0 && (
+                <p className="py-5 text-center">No Goods Found</p>
+              )}
+      </div> */}
     </div>
   );
 };

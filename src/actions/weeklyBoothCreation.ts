@@ -1,8 +1,8 @@
 "use server";
 
-import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export default async function weeklyBoothCreation(formData: FormData) {
   const session = await auth();
@@ -37,6 +37,7 @@ export default async function weeklyBoothCreation(formData: FormData) {
       vendor_id: vendorProfile.id,
     },
   });
-
+  revalidatePath("/");
+  revalidateTag("/");
   return true;
 }
