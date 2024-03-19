@@ -6,7 +6,7 @@ export default function HomePage() {
     <>
       <section>
         <section className="flex flex-col items-center gap-8 py-12 text-center">
-          <H1>Welcome to Farmers Market Finds</H1>
+          <H1>Welcome to Farmers Market Finds Hi!</H1>
           <div className="w-full text-left md:flex md:items-start md:justify-center md:gap-12">
             <div className="flex-1 p-4 md:p-0">
               <h2 className="text-2xl font-bold">For Shoppers:</h2>
