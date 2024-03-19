@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import vendorFormSubmission from "@/actions/vendorFormSubmission";
 import { Button } from "./ui/button";
@@ -6,13 +6,20 @@ import { Textarea } from "./ui/textarea";
 
 const VendorForm = () => {
   return (
-    <div className="flex flex-col items-center pt-20 pb-20">
-      <div className="p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-xl font-bold text-center mb-4">Vendor Sign Up</h1>
+    <div className="flex flex-col items-center pb-20 pt-20">
+      <div className="w-full max-w-md rounded-lg p-8 shadow-md">
+        <h1 className="mb-4 text-center text-xl font-bold">Vendor Sign Up</h1>
         <form action={vendorFormSubmission}>
           <div className="mb-4 pb-2">
-            <label htmlFor="name" className="block text-sm font-medium">Name</label>
-            <input type="text" id="name" name="vendor_name" className="mt-1 global-input block w-full rounded-md focus:ring focus:ring-opacity-50 p-2" />
+            <label htmlFor="name" className="block text-sm font-medium">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="vendor_name"
+              className="global-input mt-1 block w-full rounded-md p-2 focus:ring focus:ring-opacity-50"
+            />
           </div>
 
           {/* <div className="mb-4 pb-2">
@@ -21,22 +28,28 @@ const VendorForm = () => {
           </div> */}
 
           <div className="mb-4 pb-2">
-            <label htmlFor="description" className="block text-sm font-medium">Tell Us About Your Vendor</label>
-            <Textarea id="description" name="vendor_description" className="mt-1 global-input block w-full rounded-md focus:ring focus:ring-opacity-50 h-32" />
+            <label htmlFor="description" className="block text-sm font-medium">
+              Tell Us About Your Vendor
+            </label>
+            <Textarea
+              id="description"
+              name="vendor_description"
+              className="global-input mt-1 block h-32 w-full rounded-md focus:ring focus:ring-opacity-50"
+            />
           </div>
 
           <div>
-            <Button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2">
+            <Button
+              type="submit"
+              className="flex w-full justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"
+            >
               Submit
             </Button>
           </div>
         </form>
       </div>
     </div>
-
-
-
   );
-}
+};
 
 export default VendorForm;

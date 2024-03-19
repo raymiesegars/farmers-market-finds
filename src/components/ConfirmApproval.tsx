@@ -18,7 +18,6 @@ interface PendingVendorCardProp {
 export function ConfirmApproval({
   vendor: { id: vendorId },
 }: PendingVendorCardProp) {
-
   const handleApprove = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     await vendorApprove(vendorId);
@@ -28,7 +27,7 @@ export function ConfirmApproval({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-1/2 mr-2">Approve</Button>
+        <Button className="mr-2 w-1/2">Approve</Button>
       </DialogTrigger>
       <DialogContent className="overflow-hidden rounded-lg shadow-md sm:max-w-lg">
         <DialogHeader className="border-b p-4">

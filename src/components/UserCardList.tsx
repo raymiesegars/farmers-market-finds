@@ -28,9 +28,7 @@ export default function UserCardList({
   const filteredUsers = users.filter(
     (user) =>
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()),
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
@@ -48,9 +46,7 @@ export default function UserCardList({
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredUsers.length > 0 ? (
-            filteredUsers.map((user) => (
-              <UserCard key={user.id} user={user} />
-            ))
+            filteredUsers.map((user) => <UserCard key={user.id} user={user} />)
           ) : (
             <p className="col-span-full text-center">No users found</p>
           )}

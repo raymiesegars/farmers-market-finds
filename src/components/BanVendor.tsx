@@ -17,9 +17,7 @@ interface PendingVendorCardProp {
   vendor: VendorProfile;
 }
 
-export function BanVendor({
-  vendor: { id: vendorId },
-}: PendingVendorCardProp) {
+export function BanVendor({ vendor: { id: vendorId } }: PendingVendorCardProp) {
   const handleDeny = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     await vendorDelete(vendorId);
