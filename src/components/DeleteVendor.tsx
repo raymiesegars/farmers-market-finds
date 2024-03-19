@@ -20,7 +20,6 @@ interface PendingVendorCardProp {
 export function DeleteVendor({
   vendor: { id: vendorId },
 }: PendingVendorCardProp) {
-
   const handleDeny = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     await vendorDelete(vendorId);

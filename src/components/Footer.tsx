@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="border-t">
-      <div className="mx-auto max-w-5xl px-3 py-5 space-y-5">
+      <div className="mx-auto max-w-5xl space-y-5 px-3 py-5">
         <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
           <div>
             <h3 className="text-xl font-semibold">Farmers Market Finds</h3>

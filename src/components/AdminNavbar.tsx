@@ -1,21 +1,21 @@
 "use client";
 
-import { SignedOut, UserButton, SignedIn, SignInButton } from '@clerk/nextjs'
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { useState } from 'react'
+import { SignedOut, UserButton, SignedIn, SignInButton } from "@clerk/nextjs";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useState } from "react";
 import logo from "/public/logo.png";
-import { ModeToggle } from './ui/toggle-mode'
-import { Button } from './ui/button'
-import { MenuSquareIcon, XCircleIcon } from 'lucide-react';
+import { ModeToggle } from "./ui/toggle-mode";
+import { Button } from "./ui/button";
+import { MenuSquareIcon, XCircleIcon } from "lucide-react";
 
 export default function AdminNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <header className="shadow-sm p-5">
-      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          <div className="flex-shrink-0 flex items-center link-hover">
+    <header className="p-5 shadow-sm">
+      <nav className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          <div className="link-hover flex flex-shrink-0 items-center">
             <Link href="/" passHref legacyBehavior>
               <a className="flex items-center space-x-2 text-xl font-extrabold">
                 <Image
@@ -28,29 +28,36 @@ export default function AdminNavbar() {
               </a>
             </Link>
           </div>
-          <div className="hidden md:flex items-center space-x-4">
-
+          <div className="hidden items-center space-x-4 md:flex">
             <Link href="/admin-dashboard" legacyBehavior>
-              <a className="space-x-2 text-lg font-bold link-hover"><span>Admin Dashboard</span></a>
+              <a className="link-hover space-x-2 text-lg font-bold">
+                <span>Admin Dashboard</span>
+              </a>
             </Link>
 
             <Link href="/vendor-dashboard" legacyBehavior>
-              <a className="space-x-2 text-lg font-bold link-hover"><span>Vendor Dashboard</span></a>
+              <a className="link-hover space-x-2 text-lg font-bold">
+                <span>Vendor Dashboard</span>
+              </a>
             </Link>
 
             <Link href="/vendors" legacyBehavior>
-              <a className="space-x-2 text-lg font-bold link-hover"><span>Vendors</span></a>
+              <a className="link-hover space-x-2 text-lg font-bold">
+                <span>Vendors</span>
+              </a>
             </Link>
 
             <Link href="/about" legacyBehavior>
-              <a className="space-x-2 text-lg font-bold link-hover"><span>About Us</span></a>
+              <a className="link-hover space-x-2 text-lg font-bold">
+                <span>About Us</span>
+              </a>
             </Link>
 
             <SignedIn>
               <UserButton />
             </SignedIn>
             <SignedOut>
-              <Button asChild className='cursor-pointer'>
+              <Button asChild className="cursor-pointer">
                 <SignInButton>
                   <span>Vendor Sign In</span>
                 </SignInButton>
@@ -62,7 +69,7 @@ export default function AdminNavbar() {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="inline-flex items-center justify-center rounded-md p-2 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -79,17 +86,23 @@ export default function AdminNavbar() {
 
       {isMenuOpen && (
         <div className="md:hidden" id="mobile-menu">
-          <div className="px-2 pt-3 pb-3 space-y-3 sm:px-3 flex flex-col items-center">
+          <div className="flex flex-col items-center space-y-3 px-2 pb-3 pt-3 sm:px-3">
             <Link href="/admin-dashboard" legacyBehavior>
-              <a className="space-x-2 text-lg font-bold link-hover"><span>Admin Dashboard</span></a>
+              <a className="link-hover space-x-2 text-lg font-bold">
+                <span>Admin Dashboard</span>
+              </a>
             </Link>
 
             <Link href="/vendor-dashboard" legacyBehavior>
-              <a className="space-x-2 text-lg font-bold link-hover"><span>Vendor Dashboard</span></a>
+              <a className="link-hover space-x-2 text-lg font-bold">
+                <span>Vendor Dashboard</span>
+              </a>
             </Link>
 
             <Link href="/vendors" legacyBehavior>
-              <a className="space-x-2 text-lg font-bold link-hover"><span>Vendors</span></a>
+              <a className="link-hover space-x-2 text-lg font-bold">
+                <span>Vendors</span>
+              </a>
             </Link>
 
             <ModeToggle />
@@ -98,15 +111,13 @@ export default function AdminNavbar() {
               <UserButton />
             </SignedIn>
             <SignedOut>
-              <Button asChild className='cursor-pointer'>
-                <SignInButton>
-                  Vendor Sign In
-                </SignInButton>
+              <Button asChild className="cursor-pointer">
+                <SignInButton>Vendor Sign In</SignInButton>
               </Button>
             </SignedOut>
           </div>
         </div>
       )}
     </header>
-  )
+  );
 }
