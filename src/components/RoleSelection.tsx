@@ -42,7 +42,7 @@ export function RoleSelection({ user: { id: userId } }: UserProp) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="w-3/4 mr-2">Change Role</Button>
+        <Button className="mr-2 w-3/4">Change Role</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>Role</DropdownMenuLabel>

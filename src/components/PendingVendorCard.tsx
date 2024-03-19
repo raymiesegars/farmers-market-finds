@@ -32,7 +32,7 @@ export default function PendingVendorCard({ vendor }: any) {
             />
           </div>
         </div>
-        <hr className="w-full my-4 border-muted-foreground" />
+        <hr className="my-4 w-full border-muted-foreground" />
         <div className="flex flex-grow flex-col px-4 py-2">
           <p className="max-h-24 min-h-24 overflow-auto p-2 text-sm md:pb-2">
             {vendor.vendor_description}
