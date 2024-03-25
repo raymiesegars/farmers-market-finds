@@ -138,7 +138,7 @@ export default function HomePage() {
               thousands of potential customers. Sign up now and start sharing
               your booths on Farmers Market Finds.
             </p>
-            <Link href="/vendor/signup" legacyBehavior>
+            <Link href="/vendorform" legacyBehavior>
               <Button>Vendor Sign Up</Button>
             </Link>
           </div>
