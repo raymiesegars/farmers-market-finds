@@ -20,4 +20,3 @@ export const vendorFilterSchema = z.object({
   type: z.string().optional(),
 });
 
-export type VendorFilterValues = z.infer<typeof VendorFilterValues>;

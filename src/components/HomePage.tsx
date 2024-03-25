@@ -136,16 +136,13 @@ export default function HomePage() {
             <p className="mb-6">
               Join our community of vendors and increase your visibility to
               thousands of potential customers. Sign up now and start sharing
-              your goods on Farmers Market Finds.
+              your booths on Farmers Market Finds.
             </p>
             <Link href="/vendor/signup" legacyBehavior>
               <Button>Vendor Sign Up</Button>
             </Link>
           </div>
         </div>
-
-        {/* Testimonials or Featured Vendors Section */}
-        {/* Additional sections like testimonials or featured vendors can further enrich the homepage content */}
       </div>
     </>
   );
