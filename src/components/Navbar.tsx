@@ -41,7 +41,7 @@ export default function Navbar() {
             <SignedOut>
               <Button asChild className="cursor-pointer">
                 <SignInButton>
-                  <span>Vendor Sign In</span>
+                  <span>Vendor/Admin Sign In</span>
                 </SignInButton>
               </Button>
             </SignedOut>
@@ -80,7 +80,7 @@ export default function Navbar() {
             </SignedIn>
             <SignedOut>
               <Button asChild className="cursor-pointer">
-                <SignInButton>Vendor Sign In</SignInButton>
+                <SignInButton>Vendor/Admin Sign In</SignInButton>
               </Button>
             </SignedOut>
           </div>
