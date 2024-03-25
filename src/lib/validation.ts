@@ -8,15 +8,16 @@ const companyLogoSchema = z
   .custom<File | undefined>()
   .refine(
     (file) => !file || (file instanceof File && file.type.startsWith("image/")),
-    "Must be an image file,"
+    "Must be an image file,",
   )
   .refine((file) => {
-    return !file || file.size < 1024 * 1024 *2;
+    return !file || file.size < 1024 * 1024 * 2;
   }, "File must be less than 2MB");
 
-export const VendorFilterValues = z.object({
+export const vendorFilterSchema = z.object({
   q: z.string().optional(),
   date: z.string().optional(),
-  vendorType: z.string().optional(),
-})
+  type: z.string().optional(),
+});
 
+export type VendorFilterValues = z.infer<typeof VendorFilterValues>;
