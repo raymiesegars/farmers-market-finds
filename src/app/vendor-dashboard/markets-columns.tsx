@@ -9,7 +9,7 @@ import VendorBoothForm from "@/components/VendorBoothForm";
 import { Market } from "@/lib/marketTypes";
 import weeklyBoothCreation from "@/actions/weeklyBoothCreation";
 import weeklyBoothRemoval from "@/actions/weeklyBoothRemoval";
-import { useState } from "react";
+import Link from "next/link";
 
 export type Markets = {
   id: number;
@@ -65,7 +65,6 @@ export const marketColumns: ColumnDef<Markets>[] = [
         location.reload();
       };
 
-
       return (
         <>
           {!market.hasBooth ? (
@@ -96,13 +95,13 @@ export const marketColumns: ColumnDef<Markets>[] = [
       const buttonWidth = "140px";
       // const [vendorGoods, setVendorGoods] = useState([]);
       if (!row.original.hasBooth) {
-        return (
-          <></>
-        );
+        return <></>;
       } else {
-        return (      
-          <Dialog>
-          <DialogTrigger>
+        return (
+          <Link
+            href={`/vendor-dashboard/${row.original.hasBooth.id}`}
+            passHref
+          >
             <Button
               style={{ minWidth: buttonWidth }}
               className="flex items-center bg-[#00a5e7] hover:bg-[#00a5e799]"
@@ -110,19 +109,19 @@ export const marketColumns: ColumnDef<Markets>[] = [
               <Edit className="mr-2 h-4 w-4 flex-1"></Edit>
               Edit Booth&nbsp;&nbsp;&nbsp;
             </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <VendorBoothForm
-              date={row.original.date}
-              marketId={row.original.id}
-              weeklyBoothId={row.original.hasBooth.id}
-            />
-          </DialogContent>
-        </Dialog>
+          </Link>
         );
       }
     },
   },
 ];
 
-//
+// Example getServerSideProps implementation
+// You'll need to implement your method for fetching booth data based on ID
+// export async function getServerSideProps(context) {
+//   const { params } = context;
+//   const boothData = await getWeeklyBoothData(params.weeklyBoothId); // Implement this function based on your data fetching logic
+//   return {
+//     props: { boothData }, // will be passed to the page component as props
+//   };
+// }
