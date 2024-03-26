@@ -31,7 +31,7 @@ export default function HomePage() {
             className="z-10 flex flex-col items-center rounded-lg p-4 text-center"
             style={{
               background:
-                "radial-gradient(ellipse at center, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.55) 100%)",
+                "radial-gradient(ellipse at center, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.55) 100%)",
             }}
           >
             {" "}
