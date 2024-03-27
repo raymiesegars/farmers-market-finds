@@ -3,7 +3,6 @@
 import getClerkUser from "@/actions/getClerkUser";
 import { User } from "@prisma/client";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { DeleteUser } from "./DeleteUser";
 import { RoleSelection } from "./RoleSelection";
