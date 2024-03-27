@@ -50,7 +50,7 @@ export default function GoodCardGroup({
 
   return (
     <>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 max-h-screen overflow-auto">
         {weeklyGoods.length > 0 ? (
           weeklyGoods.map((good) => <GoodCard key={good.id} good={good} />)
         ) : (
