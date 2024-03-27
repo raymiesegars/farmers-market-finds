@@ -1,10 +1,8 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { GlobalGoods, globalGoodsColumns } from "./global-goods-columns"
 import { Markets, marketColumns } from "./markets-columns"
 import { MarketsDataTable } from "./markets-data-table";
-import { GlobalGoodsDataTable } from "./global-goods-data-table";
 import { useRouter } from 'next/navigation';
 
 
