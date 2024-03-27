@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
@@ -7,6 +7,7 @@ import { formatDate } from "@/lib/utils";
 import GlobalGoodsItem from "./GlobalGoodsItem";
 import { GlobalGoods } from "@prisma/client";
 import vendorGoodSubmission from "@/actions/vendorGoodSubmission";
+import GoodCardGroup from "./GoodCardGroup";
 
 interface VendorBoothFormProps {
   date: Date;
@@ -63,12 +64,13 @@ const VendorBoothForm = ({
   };
 
   return (
-    <div className="inset-0 flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl rounded-2xl p-8 shadow-md">
-        <div className="p-5">
-          <h1 className="mb-4 text-center text-xl font-bold">
+    <div className="inset-0 flex items-center justify-center p-2">
+      <h1 className="mb-4 text-center text-xl font-bold">
             Your Booth for {formattedDate}
           </h1>
+      <div className="w-full max-w-2xl rounded-2xl p-8 shadow-md">
+        <div className="p-5">
+          
           <form action={vendorGoodSubmission}>
             <div className="mb-4 pb-2">
               <label htmlFor="name" className="block text-sm font-medium">
@@ -184,19 +186,15 @@ const VendorBoothForm = ({
           </form>
         </div>
       </div>
-      {/* <div>
-      {filteredGoods.map((good) => (
-                <GlobalGoodsItem
-                  key={good.id}
-                  good={good}
-                  onSelect={handleSelectGood}
-                />
-              ))}
 
-              {filteredGoods.length === 0 && (
-                <p className="py-5 text-center">No Goods Found</p>
-              )}
-      </div> */}
+      <div className="w-full max-w-2xl rounded-2xl p-8 shadow-md">
+        <div className="p-5">
+          <h1 className="mb-4 text-center text-xl font-bold">
+            Goods Declared
+          </h1>
+          <GoodCardGroup weeklyBoothId={weeklyBoothId} />
+        </div>
+      </div>
     </div>
   );
 };
