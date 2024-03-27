@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { DeleteBoothGood } from "./DeleteBoothGood";
+import { EditBoothGood } from "./EditBoothGood";
 
 interface Good {
   id: number;
@@ -18,28 +20,28 @@ interface Good {
 
 export default function GoodCard({ good }: Good) {
   return (
-    <div className="block overflow-hidden rounded-lg border shadow-lg transition-shadow hover:border-gray-300 hover:shadow-xl">
-      <div className="p-4 text-center">
-        <h2 className="text-2xl font-semibold">{good.global_good.name}</h2>
-      </div>
-      <div className="flex justify-center">
-        <div className="w-auto">
-          <Image
-            src={good.global_good.image || "/assets/user-placeholder.png"}
-            alt={`${name} image`}
-            height={225}
-            width={300}
-            className="h-48 rounded-full border-2 border-gray-300 object-cover shadow-md dark:border-gray-700"
-          />
+    <div className="mx-auto max-w-md overflow-hidden rounded-lg shadow-md transition-shadow duration-300 ease-in-out hover:shadow-lg">
+      <div className="flex h-full flex-col justify-between">
+        <div className="flex p-4">
+          <div className="relative mr-3 h-24 w-24 flex-shrink-0">
+            <Image
+              src={good.global_good.image || "/assets/user-placeholder.png"}
+              alt={good.global_good.name}
+              layout="fill"
+              objectFit="cover"
+              className="rounded-full"
+            />
+          </div>
+
+          <div className="flex flex-col justify-around">
+            <h2 className="text-lg font-bold">{good.global_good.name}</h2>
+            <p>$ {good.price.toFixed(2)}</p>
+          </div>
         </div>
-      </div>
-      <hr className="my-4 w-full border-muted-foreground" />
-      <div className="px-4 py-2">
-        <p className="p-2 text-sm md:pb-2">{good.price}</p>
-      </div>
-      <div className="mt-auto flex w-full justify-center gap-4 p-4 pb-4">
-        <div className="flex w-full justify-evenly"></div>
-        <div className="flex w-full justify-evenly"></div>
+        <div className="flex justify-end p-4">
+          <EditBoothGood good={good} />
+          <DeleteBoothGood good={good} />
+        </div>
       </div>
     </div>
   );

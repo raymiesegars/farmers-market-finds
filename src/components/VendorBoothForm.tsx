@@ -8,6 +8,9 @@ import GlobalGoodsItem from "./GlobalGoodsItem";
 import { GlobalGoods } from "@prisma/client";
 import vendorGoodSubmission from "@/actions/vendorGoodSubmission";
 import GoodCardGroup from "./GoodCardGroup";
+import { ArrowLeft, CircleDashedIcon } from "lucide-react";
+import { Router } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface VendorBoothFormProps {
   date: Date;
@@ -63,14 +66,24 @@ const VendorBoothForm = ({
     setSelectedGood(transformedGood);
   };
 
+  const router = useRouter();
+
   return (
-    <div className="inset-0 flex items-center justify-center p-2">
-      <h1 className="mb-4 text-center text-xl font-bold">
-            Your Booth for {formattedDate}
-          </h1>
-      <div className="w-full max-w-2xl rounded-2xl p-8 shadow-md">
-        <div className="p-5">
-          
+    <div className="flex flex-col items-center justify-center p-4">
+      <div className="mb-4 flex w-full items-center justify-between">
+        <Button
+          onClick={() => router.push("/vendor-dashboard")}
+          className="flex items-center justify-center p-2"
+        >
+          <ArrowLeft />
+        </Button>
+        <h1 className="flex-1 text-center text-xl font-bold">
+          Your Booth for {formatDate(new Date(date))}
+        </h1>
+      </div>
+
+      <div className="flex w-full max-w-7xl flex-col space-y-8 md:flex-row md:space-x-8 md:space-y-0">
+        <div className="flex-1 rounded-2xl p-8 shadow-md">
           <form action={vendorGoodSubmission}>
             <div className="mb-4 pb-2">
               <label htmlFor="name" className="block text-sm font-medium">
@@ -97,14 +110,14 @@ const VendorBoothForm = ({
               ))}
 
               {filteredGoods.length === 0 && (
-                <p className="py-5 text-center">No Goods Found</p>
+                <div className="flex h-screen justify-center pt-20">
+                  <CircleDashedIcon className="h-8 w-8 animate-spin text-blue-500" />
+                </div>
               )}
             </div>
 
-            {/* Section to display the selected good */}
             {selectedGood && (
               <div className="mb-4">
-                {/* Invisible input fields to pass our data for the formData */}
                 <input
                   name="globalGoodId"
                   type="hidden"
@@ -185,13 +198,9 @@ const VendorBoothForm = ({
             </div>
           </form>
         </div>
-      </div>
 
-      <div className="w-full max-w-2xl rounded-2xl p-8 shadow-md">
-        <div className="p-5">
-          <h1 className="mb-4 text-center text-xl font-bold">
-            Goods Declared
-          </h1>
+        <div className="flex-1 rounded-2xl p-2 shadow-md">
+          <h2 className="mb-4 text-center text-xl font-bold">Goods Declared</h2>
           <GoodCardGroup weeklyBoothId={weeklyBoothId} />
         </div>
       </div>

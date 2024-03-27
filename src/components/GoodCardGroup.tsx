@@ -3,6 +3,7 @@
 import getBoothGoods from "@/actions/getBoothGoods";
 import { useEffect, useState } from "react";
 import GoodCard from "./GoodCard";
+import { CircleDashedIcon } from "lucide-react";
 
 interface GlobalGood {
   id: number;
@@ -20,7 +21,11 @@ interface Good {
   global_good: GlobalGood;
 }
 
-export default function GoodCardGroup({ weeklyBoothId }: { weeklyBoothId: number }) {
+export default function GoodCardGroup({
+  weeklyBoothId,
+}: {
+  weeklyBoothId: number;
+}) {
   const [goods, setGoods] = useState<Good[] | null>(null);
 
   useEffect(() => {
@@ -34,14 +39,18 @@ export default function GoodCardGroup({ weeklyBoothId }: { weeklyBoothId: number
   }, [weeklyBoothId]);
 
   if (!goods) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex h-screen justify-center pt-20">
+        <CircleDashedIcon className="h-8 w-8 animate-spin text-blue-500" />
+      </div>
+    );
   }
 
   const weeklyGoods = goods;
-  
+
   return (
     <>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
         {weeklyGoods.length > 0 ? (
           weeklyGoods.map((good) => <GoodCard key={good.id} good={good} />)
         ) : (
