@@ -18,7 +18,11 @@ interface Good {
   };
 }
 
-export default function GoodCard({ good }: Good) {
+interface GoodCardProps {
+  good: Good;
+}
+
+const GoodCard: React.FC<GoodCardProps> = ({ good }) => {
   return (
     <div className="mx-auto max-w-md overflow-hidden rounded-lg shadow-md transition-shadow duration-300 ease-in-out hover:shadow-lg">
       <div className="flex h-full flex-col justify-between">
@@ -46,3 +50,5 @@ export default function GoodCard({ good }: Good) {
     </div>
   );
 }
+
+export default GoodCard;
